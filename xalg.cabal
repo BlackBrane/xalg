@@ -1,0 +1,93 @@
+name:                xalg
+version:             0.1.0.0
+synopsis:            Math DSL
+description:         DSL for math and physics
+license:             MIT
+license-file:        LICENSE
+author:              Cliff Harvey
+maintainer:          cs.hbar@gmail.com
+copyright:           2016
+category:            Math
+build-type:          Simple
+extra-source-files:  ChangeLog.md
+cabal-version:       >=1.10
+
+
+library
+
+  exposed-modules:     XAlg,
+                       XAlg.Foundation.Recursion,
+                       XAlg.Foundation.Core,
+                       XAlg.Foundation.Parsing,
+                       XAlg.Foundation.Focusing,
+                       XAlg.Infra.Rewrite,
+                       XAlg.Infra.Analyze,
+                       XAlg.Infra.Logic,
+                       XAlg.Infra.PrettyPrinting,
+                       XAlg.Languages.Arithmetic.Number,
+                       XAlg.Languages.Arithmetic.Expr,
+                       XAlg.Languages.Arithmetic.Quotation,
+                       XAlg.Languages.Arithmetic.Laws,
+                       XAlg.Languages.Arithmetic,
+                       XAlg.Console.Environment,
+                       XAlg.Console.Infra,
+                       XAlg.Console.REPL,
+                       XAlg.Examples
+
+
+  build-depends:       base             >=4.9  && <4.10,
+                       megaparsec       >=5.0  && <5.1,
+                       template-haskell >=2.11 && <2.12,
+                       haskeline        >=0.7  && <0.8,
+                       mtl              >=2.2  && <2.3,
+                       ansigraph        >=0.3.0.1  && <0.4,
+                       ansi-terminal    >=0.6  && <0.7,
+                       containers       >=0.5  && <0.6,
+                       syb              >=0.6  && <0.7,
+                       ansi-wl-pprint   >=0.6  && <0.7
+
+  hs-source-dirs:      src
+
+  default-language:    Haskell2010
+
+  default-extensions:  DeriveFunctor,
+                       DeriveDataTypeable,
+                       DeriveFoldable,
+                       DeriveTraversable,
+                       StandaloneDeriving,
+                       MultiParamTypeClasses,
+                       ExistentialQuantification,
+                       FunctionalDependencies,
+                       TypeOperators,
+                       LiberalTypeSynonyms,
+                       PatternSynonyms,
+                       ViewPatterns,
+                       FlexibleInstances
+
+  ghc-options:         -fwarn-incomplete-patterns
+
+executable xalg
+  hs-source-dirs:      src-ex
+
+  main-is:             Main.hs
+
+  build-depends:       xalg,
+                       base             >=4.9  && <4.10
+
+
+  default-language:    Haskell2010
+
+test-suite test-xalg
+  type:             exitcode-stdio-1.0
+
+  hs-source-dirs:   test
+
+  main-is:          test-xalg.hs
+
+  default-language: Haskell2010
+
+  build-depends:    xalg,
+                    base            >=4.9  && <4.10,
+                    megaparsec      >=5.0  && <5.1,
+                    hspec           == 2.*,
+                    QuickCheck      == 2.*
